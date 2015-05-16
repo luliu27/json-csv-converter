@@ -32,6 +32,10 @@
   (println msg)
   (System/exit status))
 
+(defn get-columns
+  [column-file]
+  (string/split (slurp column-file) #"\n"))
+
 (defn -main
   [& args]
   (let [{:keys [options arguments summary errors]} (parse-opts args cli-options)]
@@ -41,5 +45,8 @@
      (nil? (:col-spec options)) (exit 1 (usage summary "Missing Column spec"))
      errors (exit 1 (error-msg errors))) 
     (with-open [s (FileInputStream. (file (:input options)))]
-      (let [r (reader s)]
-        (doall (map prn (json/parsed-seq r)))))))
+      (let [r (reader s)
+            cols (get-columns (:col-spec options))]
+        (do
+          (doall (map prn cols))
+          (doall (map prn (json/parsed-seq r))))))))
