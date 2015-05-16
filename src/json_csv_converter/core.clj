@@ -32,9 +32,13 @@
   (println msg)
   (System/exit status))
 
+(defn split-file [f] (string/split (slurp f) #"\n"))
+
 (defn get-columns
   [column-file]
-  (string/split (slurp column-file) #"\n"))
+  (->> column-file
+       (split-file)
+       (map #(string/split % #"\."))))
 
 (defn -main
   [& args]
