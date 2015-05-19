@@ -1,3 +1,6 @@
+;; java -cp ~/sources/cljs.jar:src/cljs clojure.main build.clj
 (require 'cljs.build.api)
 
-(cljs.build.api/build "src/cljs" {:output-to "resources/js/json-csv-converter.js"})
+(cljs.build.api/watch "src/cljs"
+                      {:output-to "out/json-csv-converter.js"
+                       :main 'json-csv-converter.core})

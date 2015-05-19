@@ -2,6 +2,7 @@
 /classes
 /checkouts
 /resources
+/out
 pom.xml
 pom.xml.asc
 *.jar

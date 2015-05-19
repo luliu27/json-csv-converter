@@ -1,5 +1,3 @@
 (ns json-csv-converter.core)
-
 (enable-console-print!)
-
-(println "json-csv-converter")
+(println "hello world, json-csv-converter with watch")
