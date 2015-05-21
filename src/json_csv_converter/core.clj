@@ -4,7 +4,8 @@
             [clojure.string :as string]
             [clojure.data.csv :as csv]
             [clojure.tools.cli :refer [parse-opts]])
-  (:import (java.io FileInputStream)))
+  (:import (java.io FileInputStream))
+  (:gen-class))
 
 (def cli-options
   [
