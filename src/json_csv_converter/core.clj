@@ -7,6 +7,14 @@
   (:import (java.io FileInputStream))
   (:gen-class))
 
+;; always dos: catch uncaught exception
+;; this code can be used everywhere
+(defn enable-uncaught-exceptions-logging []
+  (Thread/setDefaultUncaughtExceptionHandler
+   (reify Thread$UncaughtExceptionHandler
+     (uncaughtException [_ thread ex]
+       (println ex "Uncaught exception on" (.getName thread))))))
+
 (def cli-options
   [
    ["-i" "--input FILE" "Input file"]
@@ -49,6 +57,7 @@
 
 (defn -main
   [& args]
+  (enable-uncaught-exceptions-logging)
   (let [{:keys [options arguments summary errors]} (parse-opts args cli-options)]
     (cond
      (:help options) (exit 0 (usage summary))
