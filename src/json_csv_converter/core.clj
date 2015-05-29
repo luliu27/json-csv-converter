@@ -8,7 +8,6 @@
   (:gen-class))
 
 ;; always dos: catch uncaught exception
-;; this code can be used everywhere
 (defn enable-uncaught-exceptions-logging []
   (Thread/setDefaultUncaughtExceptionHandler
    (reify Thread$UncaughtExceptionHandler
